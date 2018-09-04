@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import RoomList from './components/RoomList';
+import * as firebase from 'firebase';
 
 // Initialize Firebase
   var config = {
@@ -25,6 +26,7 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+        <RoomList firebase={firebase} />
       </div>
     );
   }
