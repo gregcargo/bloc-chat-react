@@ -8,6 +8,7 @@ class MessageList extends Component {
 			content: "",
 			sentAt: "",
 			messages: [],
+			roomID: "",
 		};
 
 		this.messagesRef = this.props.firebase.database().ref('messages');
@@ -25,8 +26,8 @@ class MessageList extends Component {
 
 
 	render() {
-		const messageList = this.state.messages.map((message) =>
-        <section className="message-item">
+		const messageList = this.state.messages.filter(message => message.key === this.props.activeRoom.key).map((message) =>
+        <section className="message-item" key={message.roomId}>
           <p
             element="span"
             className="msg-sent-at">
