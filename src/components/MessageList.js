@@ -13,6 +13,17 @@ class MessageList extends Component {
 		this.messagesRef = this.props.firebase.database().ref('messages');
 		};
 
+	componentDidMount() {
+        this.messagesRef.on('child_added', snapshot => {
+             const message = snapshot.val();
+               message.key = snapshot.key;
+
+       	this.setState({ messages: this.state.messages.concat( message) })
+        });
+   		}
+
+
+
 	render() {
 		const messageList = this.state.messages.map((message) =>
         <li className="message-item">
