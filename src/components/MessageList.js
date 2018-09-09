@@ -26,7 +26,7 @@ class MessageList extends Component {
 
 	render() {
 		const messageList = this.state.messages.map((message) =>
-        <li className="message-item">
+        <section className="message-item">
           <p
             element="span"
             className="msg-sent-at">
@@ -38,7 +38,7 @@ class MessageList extends Component {
           <p className="msg-content">
           	{message.content}
           </p>
-        </li>
+        </section>
     );
 
 		return (
