@@ -22,13 +22,18 @@ class RoomList extends Component {
 
    	handleChange(event) {
     	event.preventDefault();
+    	if (!this.state.newRoomName) { return }
     	this.setState({newRoomName: event.target.value});
+
   		}
 
    	createRoom = (e) => {
+   		e.preventDefault();
+     	console.log('createRoom called');
    		this.roomsRef.push({
   		name: this.state.newRoomName
 		});
+		this.setState({ newRoomName: '' })
    		}
 
 	render() {
@@ -45,7 +50,7 @@ class RoomList extends Component {
   				<form onSubmit={this.createRoom}>
   					<input placeholder='New room' 
   						value={this.state.newRoomName}
-						onChange={e => this.setState({newRoomName: e.target.value})}
+						onChange={e => this.setState({newRoomName: e.target.value} )}
 							/>
   					<input type='submit' value='Create room' />
 				</form>
