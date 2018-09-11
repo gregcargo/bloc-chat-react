@@ -27,6 +27,15 @@ class RoomList extends Component {
 
   		}
 
+  	handleChange(e) {
+    	e.preventDefault();
+    	this.setState({
+      		username: this.props.user.displayName,
+      		content: e.target.value,
+      		sentAt: this.props.firebase.database.ServerValue.TIMESTAMP
+    	});
+  		}
+
    	createRoom = (e) => {
    		e.preventDefault();
      	console.log('createRoom called');

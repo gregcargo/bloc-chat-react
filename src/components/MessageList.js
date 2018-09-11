@@ -23,9 +23,29 @@ class MessageList extends Component {
         });
    		}
 
-
+   	createMessage = (e) => {
+   		e.preventDefault();
+     	console.log('createMessage called');
+   		this.messagesRef.push({
+  		name: this.state.content
+		});
+		this.setState({ content: '' })
+   		}
 
 	render() {
+	
+		const messageBar = (
+      		<form onSubmit={this.createMessage}>
+        		<input 
+        			type="text" 
+        			value={this.state.content}
+              		placeholder="Enter Message"
+              		onChange={this.handleChange}		
+            	/>
+            	<button type="submit">Send</button>
+      		</form>
+    		);
+
 		const messageList = this.state.messages.filter(message => message.roomId === this.props.activeRoom.key).map((message) =>
         <section className="message-item" key={message.key}>
           <p
@@ -45,6 +65,7 @@ class MessageList extends Component {
 		return (
 			<section>
 				{messageList}
+				{messageBar}
 			</section>
 		)}
 
