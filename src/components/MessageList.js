@@ -29,7 +29,8 @@ class MessageList extends Component {
     	this.setState({
       		username: this.props.user.displayName,
       		content: e.target.value,
-      		sentAt: this.props.firebase.database.ServerValue.TIMESTAMP
+      		sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
+      		roomId: this.props.activeRoom
     	});
   		}
 
@@ -39,9 +40,10 @@ class MessageList extends Component {
    		this.messagesRef.push({
    			username: this.state.username,
         	content: this.state.content,
-        	sentAt: this.state.sentAt
+        	sentAt: this.state.sentAt,
+        	roomId: this.props.activeRoom.key
 		});
-		this.setState({ cusername: "", content: "", sentAt: "" })
+		this.setState({ username: "", content: "", sentAt: "" })
    		}
 
 	render() {
