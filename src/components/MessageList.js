@@ -16,8 +16,8 @@ class MessageList extends Component {
 
 	componentDidMount() {
         this.messagesRef.on('child_added', snapshot => {
-             const message = snapshot.val();
-             message.key = snapshot.key;
+            const message = snapshot.val();
+            message.key = snapshot.key;
 
        	this.setState({ messages: this.state.messages.concat( message) })
         });
@@ -25,6 +25,7 @@ class MessageList extends Component {
 
    	handleChange(e) {
     	e.preventDefault();
+    	console.log(e.target.value);
     	this.setState({
       		username: this.props.user.displayName,
       		content: e.target.value,
@@ -36,9 +37,11 @@ class MessageList extends Component {
    		e.preventDefault();
      	console.log('createMessage called');
    		this.messagesRef.push({
-  		name: this.state.content
+   			username: this.state.username,
+        	content: this.state.content,
+        	sentAt: this.state.sentAt
 		});
-		this.setState({ content: '' })
+		this.setState({ cusername: "", content: "", sentAt: "" })
    		}
 
 	render() {
@@ -49,7 +52,7 @@ class MessageList extends Component {
         			type="text" 
         			value={this.state.content}
               		placeholder="Enter Message"
-              		onChange={this.handleChange}		
+              		onChange={this.handleChange.bind(this)}		
             	/>
             	<button type="submit">Send</button>
       		</form>

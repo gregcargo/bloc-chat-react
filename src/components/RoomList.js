@@ -33,7 +33,7 @@ class RoomList extends Component {
    		e.preventDefault();
      	console.log('createRoom called');
    		this.roomsRef.push({
-  		name: this.state.newRoomName
+  			name: this.state.newRoomName
 		});
 		this.setState({ newRoomName: '' })
    		}
